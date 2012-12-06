@@ -45,7 +45,7 @@ clean:
 	rm -Rf coverage
 	rm -Rf lib-cov
 	rm -Rf lib
-	rm test/hive-test-process
+	- rm test/hive-test-process
 
 .PHONY: instrument all default test watch cover clean lib-cov
 
