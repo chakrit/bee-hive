@@ -8,9 +8,10 @@ v8.log
 
 # test artifacts
 html-report/
-lib-cov
+lib-cov/
 coverage
 coverage.html
 cover/
 coverage/
+test/hive-test-process
 
