@@ -27,7 +27,7 @@ module.exports = do ->
     ctor.should.match /(Bee|ChildProcess)/i
 
 
-  # interface
+  # interfaces
   describe 'Hive class', ->
     before -> @Hive = source 'hive'
     after -> delete @Hive
@@ -74,7 +74,6 @@ module.exports = do ->
         it 'should complains if callback is not a function',
           expectBadArgThrow 'launch', TAG, CMD, /callback/i
 
-
       describe 'get() method', ->
         before -> @get = @hive.get
         after -> delete @get
@@ -104,6 +103,12 @@ module.exports = do ->
 
         it 'should complains if tag not a string',
           expectBadArgThrow 'remove', /tag/i
+
+      describe 'clear() method', ->
+        before -> @clear = @hive.clear
+        after -> delete @clear
+
+        it 'should be exported', -> @clear.should.be.a 'function'
 
       describe 'kill() method', ->
         before -> @kill = @hive.kill
@@ -241,6 +246,18 @@ module.exports = do ->
         it 'should no longer list the removed process in result of all()', ->
           @remove TAG
           @expectProcsEql @proc2
+
+      describe 'calling clear()', ->
+        beforeEach -> @clear = @hive.clear
+        afterEach -> delete @clear
+
+        it 'should cause empty list to be returned for tags()', ->
+          @clear()
+          @expectTagsEql()
+
+        it 'should cause empty list to be returned for all()', ->
+          @clear()
+          @expectProcsEql()
 
       describe 'calling kill() with tag', ->
         beforeEach ->

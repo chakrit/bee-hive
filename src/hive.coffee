@@ -58,6 +58,9 @@ module.exports = do ->
       validateTag tag
       delete @processes[tag]
 
+    clear: =>
+      @remove tag for tag of @processes
+
     kill: (tag, signal) =>
       validateTag tag
       validateSignal signal
