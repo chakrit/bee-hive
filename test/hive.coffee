@@ -154,29 +154,48 @@ module.exports = do ->
     it 'should returns null for get() initially when there are no processes launched', ->
       expect(@hive.get TAG).to.be.null
 
+    it 'should returns empty array for tags() when there are no processes launched', ->
+      @hive.tags().should.eql []
+
+    it 'should returns empty array for all() when there are no processes launched', ->
+      @hive.all().should.eql []
+
     describe 'launching a process', ->
       beforeEach -> @launch = (cb) -> @hive.launch TAG, CMD, cb
       afterEach -> delete @launch
 
-      it 'should calls back', (done) ->
-        @launch done
-
-      it 'should suceeeds', (done) ->
-        @launch (e) ->
-          return done e if e
-          exec "ps aux", (e, stdout, stderr) ->
-            return done e if e
-            stdout.should.contain CMD_NAME
-            done()
-
-      it 'should emits a `launch` event with the same arguments', (done) ->
-        @hive.once 'launch', (tag, cmd) ->
-          tag.should.eq TAG
-          cmd.should.eq CMD
+      launchExpectEmit = (emitAction, callbackAction) -> (done) ->
+        @hive.once 'launch', (args...) =>
+          emitAction.apply this, args if emitAction
           done()
 
-        @launch (e) ->
+        @launch (e) =>
           return done e if e
+          callbackAction() if callbackAction
+
+      it 'should calls back', (done) -> @launch done
+
+      it 'should actually starts the process',
+        launchExpectEmit ->
+          exec "ps aux | grep #{CMD_NAME}", (e, stdout, stderr) ->
+            throw e if e
+            stdout.should.contain CMD_NAME
+
+      it 'should emits a `launch` event with the same arguments',
+        launchExpectEmit (tag, cmd, proc) ->
+          tag.should.eq TAG
+          cmd.should.eq CMD
+          proc.should.eq @hive.get tag
+
+      it 'should saves launch tag with the launched process object',
+        launchExpectEmit (tag, cmd, proc) ->
+          proc.should.have.property 'tag'
+          proc.tag.should.eq tag
+
+      it 'should saves launch command with the launched process object',
+        launchExpectEmit (tag, cmd, proc) ->
+          proc.should.have.property 'cmd'
+          proc.cmd.should.eq cmd
 
     describe 'with two launched processes', ->
       beforeEach (done) ->

@@ -41,8 +41,11 @@ module.exports = do ->
       @processes[tag] = child = new Bee exec cmd
 
       nextTick () =>
+        child.tag = tag
+        child.cmd = cmd
+
+        @emit 'launch', tag, cmd, child
         cb()
-        @emit 'launch', tag, cmd
 
     get: (tag) =>
       validateTag tag
