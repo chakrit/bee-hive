@@ -35,6 +35,7 @@ main(int argc, char *argv[]) {
   if (argc >= 2) sscanf(argv[1], "%d", &timeout_s);
   if (argc >= 3) sscanf(argv[2], "%s", message);
 
+  if (!timeout_s) timeout_s = TIMEOUT_S;
   int timeleft_us = timeout_s * S2uS;
 
   do {

@@ -6,8 +6,9 @@ do ->
     it 'should works', ->
 
     describe 'helper', ->
-      before -> require './helper'
+      before -> @helper = require './helper'
+      after -> delete @helper
 
-      it 'should be injected into global scope', ->
-        source.should.be.a 'function' # works if source and should is added to global via ./helper
+      it 'should inject functions into global', ->
+        source.should.be.a 'function' # source function available globally
 

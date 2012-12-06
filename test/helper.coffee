@@ -5,6 +5,7 @@ module.exports = do ->
   _ = require 'underscore'
   chai = require 'chai'
   sinon = require 'sinon'
+  { Stream } = require 'stream'
 
   SRC_FOLDER = unless process.env.COVER
     "../src/"
@@ -19,5 +20,17 @@ module.exports = do ->
     source: (path) -> require "#{SRC_FOLDER}#{path}"
     log: console.log
     expect: chai.expect
-    sinon: sinon
+    stub: sinon.stub
+    spy: sinon.spy
+
+    TestStream: class TestStream extends Stream
+      constructor: ->
+        @readable = true
+        @writable = true
+
+      write: (data, encoding) ->
+        @emit 'data', (new Buffer data, encoding)
+
+      end: ->
+        @emit 'end'
 
