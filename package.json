@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "underscore": "~1.4.2",
-    "peekstream": "~0.1.4",
+    "peekstream": "~0.1.5",
     "bufferstream": "~0.5.1"
   }
 }
