@@ -1,7 +1,13 @@
 
-# BEEHIVE
+# BEE-HIVE
 
-Spawn, tag, monitor and manage multiple node.js child_process-es with ease.
+Spawn, tag, monitor and manage multiple node.js ChildProcess(es) with ease.
 
-More info soon....
+```sh
+$ npm install bee-hive --save
+```
+
+Not to be confused with the `beehive` package!
+
+More details to follow...
 
