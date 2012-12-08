@@ -1,5 +1,4 @@
-
-[![Travis CI badge](https://secure.travis-ci.org/chakrit/bee-hive.png)](http://traivs-ci.org/chakrit/bee-hive)
+[![Travis CI badge](https://secure.travis-ci.org/chakrit/bee-hive.png)](http://travis-ci.org/chakrit/bee-hive)
 
 # BEE-HIVE
 
