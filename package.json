@@ -25,10 +25,10 @@
     "coffee-script": "~1.4.0",
     "mocha-istanbul": "~0.1.0",
     "sinon-chai": "~2.2.0",
-    "async": "~0.1.22"
+    "async": "~0.1.22",
+    "underscore": "~1.4.3"
   },
   "dependencies": {
-    "underscore": "~1.4.2",
     "peekstream": "~0.1.5"
   }
 }
