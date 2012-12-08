@@ -1,4 +1,6 @@
 
+[![Travis CI badge](https://secure.travis-ci.org/chakrit/bee-hive.png)](http://traivs-ci.org/chakrit/bee-hive)
+
 # BEE-HIVE
 
 The stupid dash in the name was because `beehive` is another package
