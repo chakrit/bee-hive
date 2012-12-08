@@ -61,6 +61,10 @@ module.exports = do ->
       validateTag tag
       delete @processes[tag]
 
+    # TODO:
+    # clean: => remove all dead processes
+    # restart: => restart tagged processes
+
     clear: =>
       @remove tag for tag of @processes
 
