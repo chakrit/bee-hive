@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/chakrit/beehive.git"
+    "url": "git://github.com/chakrit/bee-hive.git"
   },
   "keywords": [
     "child_process",
@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "underscore": "~1.4.2",
-    "peekstream": "~0.1.5",
-    "bufferstream": "~0.5.1"
+    "peekstream": "~0.1.5"
   }
 }
