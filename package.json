@@ -1,6 +1,6 @@
 {
   "name": "bee-hive",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Spawn, manage and monitor multiple node.js child_process-es with ease.",
   "main": "index.js",
   "scripts": {
